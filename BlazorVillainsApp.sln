@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32516.85
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorVillainsApp.Server", "BlazorVillainsApp\Server\BlazorVillainsApp.Server.csproj", "{905DE967-DA3B-4229-B18D-B029B8EA8489}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorVillainsApp.Server", "BlazorVillainsApp\Server\BlazorVillainsApp.Server.csproj", "{905DE967-DA3B-4229-B18D-B029B8EA8489}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorVillainsApp.Client", "BlazorVillainsApp\Client\BlazorVillainsApp.Client.csproj", "{AAB25B83-103F-4CC5-B428-561D74B4D960}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorVillainsApp.Client", "BlazorVillainsApp\Client\BlazorVillainsApp.Client.csproj", "{AAB25B83-103F-4CC5-B428-561D74B4D960}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorVillainsApp.Shared", "BlazorVillainsApp\Shared\BlazorVillainsApp.Shared.csproj", "{0E870D14-D71C-4689-A686-1A594D90F620}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorVillainsApp.Shared", "BlazorVillainsApp\Shared\BlazorVillainsApp.Shared.csproj", "{0E870D14-D71C-4689-A686-1A594D90F620}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

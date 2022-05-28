@@ -1,3 +1,5 @@
+global using BlazorVillainsApp.Shared.Models;
+
 using BlazorVillainsApp.Client;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
