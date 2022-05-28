@@ -1,4 +1,5 @@
 ﻿@page "/villains"
+@inject IVillainService VillainService
 
 <PageTitle>Villains App</PageTitle>
 
@@ -15,11 +16,25 @@
 
     </thead>
     <tbody>
+        @foreach(var villain in VillainService.Villains)
+        {
+            <tr>
+                <td>@villain.FirstName</td>
+                <td>@villain.LastName</td>
+                <td>@villain.VillainName</td>
+                <td>@villain.Comic.Name</td>
+            </tr>
+        }
 
     </tbody>
 
 </table>
 
 @code {
+
+    protected override async Task OnInitializedAsync()
+    {
+        await VillainService.GetVillains();
+    }
 
 }
