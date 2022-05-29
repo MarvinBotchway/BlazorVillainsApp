@@ -21,9 +21,11 @@ namespace BlazorVillainsApp.Client.Services.VillainServices
             throw new NotImplementedException();
         }
 
-        public Task<VillainModel> GetSingleVillain(int? id)
+        public async Task<VillainModel> GetSingleVillain(int? id)
         {
-            throw new NotImplementedException();
+            var result = await _http.GetFromJsonAsync<VillainModel>($"api/villains/{id}");
+            if (result != null) return result;
+            throw new Exception("Did not get a Villain Id");
         }
 
         public async Task GetVillains()
