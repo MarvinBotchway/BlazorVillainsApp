@@ -1,5 +1,6 @@
 ﻿@page "/villains"
 @inject IVillainService VillainService
+@inject NavigationManager NavigationManager
 
 <PageTitle>Villains App</PageTitle>
 
@@ -23,6 +24,11 @@
                 <td>@villain.LastName</td>
                 <td>@villain.VillainName</td>
                 <td>@villain.Comic.Name</td>
+                <td>
+                    <button class="btn btn-primary" @onclick="(() => OpenVillainPage(villain.Id))">
+                        <i class="oi oi-pencil"></i>
+                    </button>
+                </td>
             </tr>
         }
 
@@ -35,6 +41,11 @@
     protected override async Task OnInitializedAsync()
     {
         await VillainService.GetVillains();
+    }
+
+    void OpenVillainPage(int? id)
+    {
+        NavigationManager.NavigateTo($"/villain/{id}");
     }
 
 }
