@@ -16,9 +16,10 @@ namespace BlazorVillainsApp.Client.Services.VillainServices
         public List<ComicModel> Comics { get; set; } = new List<ComicModel>();
         public List<VillainModel> Villains { get; set; } = new List<VillainModel>();
 
-        public Task GetComics()
+        public async Task GetComics()
         {
-            throw new NotImplementedException();
+            var result = await _http.GetFromJsonAsync<List<ComicModel>>("api/villains/comics");
+            if (result != null) Comics = result;
         }
 
         public async Task<VillainModel> GetSingleVillain(int? id)

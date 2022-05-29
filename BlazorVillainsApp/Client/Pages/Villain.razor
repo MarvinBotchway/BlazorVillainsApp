@@ -11,6 +11,34 @@ else
 {
     <PageTitle>@villain.VillainName</PageTitle>
     <h3>Edit @villain.VillainName</h3>
+
+    <EditForm Model="villain" OnSubmit="HandleSubmit">
+        <div>
+            <lable for="firstName">First Name</lable>
+            <InputText id="firstName" @bind-Value="villain.FirstName" class="form-control"></InputText>
+        </div>
+        <div>
+            <lable for="lastName">Last Name</lable>
+            <InputText id="lastName" @bind-Value="villain.LastName" class="form-control"></InputText>
+        </div>
+        <div>
+            <lable for="villainName">Villain Name</lable>
+            <InputText id="villainName" @bind-Value="villain.VillainName" class="form-control"></InputText>
+        </div>
+        <div>
+            <label>Comic</label>
+            <InputSelect @bind-Value="villain.ComicId" class="form-select">
+                @foreach(var comic in VillainService.Comics)
+                {
+                    <option value="@comic.Id">@comic.Name</option>
+                }
+
+            </InputSelect>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary">@btnText</button>
+
+    </EditForm>
 }
 
 
@@ -21,8 +49,23 @@ else
 
     VillainModel villain = new VillainModel() { Comic = new ComicModel() { } };
 
+    string btnText = string.Empty;
+
+    
+
     protected override async Task OnParametersSetAsync()
     {
         villain = await VillainService.GetSingleVillain(Id);
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        btnText = Id == null? "Add new Villain" : "Update Villain";
+        await VillainService.GetComics();
+    }
+
+    async Task HandleSubmit()
+    {
+        
     }
 }
