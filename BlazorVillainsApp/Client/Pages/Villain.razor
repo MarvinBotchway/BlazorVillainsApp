@@ -1,0 +1,28 @@
+﻿@page "/villain"
+@page "/villain/{id:int}"
+@inject IVillainService VillainService
+
+@if(Id == null)
+{
+    <PageTitle>New Villain</PageTitle>
+    <h3>Create New Villain</h3>
+}
+else
+{
+    <PageTitle>@villain.VillainName</PageTitle>
+    <h3>Edit @villain.VillainName</h3>
+}
+
+
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    VillainModel villain = new VillainModel() { Comic = new ComicModel() { } };
+
+    protected override async Task OnParametersSetAsync()
+    {
+        villain = await VillainService.GetSingleVillain(Id);
+    }
+}
