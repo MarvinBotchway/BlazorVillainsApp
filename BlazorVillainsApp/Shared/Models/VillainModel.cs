@@ -12,7 +12,7 @@ namespace BlazorVillainsApp.Shared.Models
         public string FirstName { get; set; } = string.Empty;
         public string LastName { get; set; } = string.Empty;
         public string VillainName { get; set; } = string.Empty;
-        public ComicModel Comic { get; set; } = new ComicModel();
+        public ComicModel? Comic { get; set; } 
         public int ComicId { get; set; }
     }
 }
