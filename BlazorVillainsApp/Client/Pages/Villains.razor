@@ -35,6 +35,7 @@
     </tbody>
 
 </table>
+<button class="btn btn-primary" @onclick="CreateNewVillain">Create New Villain</button>
 
 @code {
 
@@ -46,6 +47,11 @@
     void OpenVillainPage(int? id)
     {
         NavigationManager.NavigateTo($"/villain/{id}");
+    }
+
+    void CreateNewVillain()
+    {
+        NavigationManager.NavigateTo("/villain");
     }
 
 }

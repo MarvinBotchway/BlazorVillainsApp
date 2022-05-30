@@ -12,7 +12,10 @@ else
     <PageTitle>@villain.VillainName</PageTitle>
     <h3>Edit @villain.VillainName</h3>
 
-    <EditForm Model="villain" OnSubmit="HandleSubmit">
+    
+}
+
+<EditForm Model="villain" OnSubmit="HandleSubmit">
         <div>
             <lable for="firstName">First Name</lable>
             <InputText id="firstName" @bind-Value="villain.FirstName" class="form-control"></InputText>
@@ -37,11 +40,9 @@ else
         </div>
         <br>
         <button type="submit" class="btn btn-primary">@btnText</button>
+        <button type="button" class="btn btn-danger" @onclick="DeleteVillain">Delete Villain</button>
 
     </EditForm>
-}
-
-
 
 @code {
     [Parameter]
@@ -51,21 +52,43 @@ else
 
     string btnText = string.Empty;
 
-    
-
-    protected override async Task OnParametersSetAsync()
-    {
-        villain = await VillainService.GetSingleVillain(Id);
-    }
-
     protected override async Task OnInitializedAsync()
     {
         btnText = Id == null? "Add new Villain" : "Update Villain";
         await VillainService.GetComics();
     }
 
+    protected override async Task OnParametersSetAsync()
+    {
+        if (Id == null)
+        {
+            villain.Comic = VillainService.Comics[0];
+            villain.ComicId = villain.Comic.Id;
+        }
+        else
+        {
+            villain = await VillainService.GetSingleVillain(Id);
+        }
+
+    }
+
+
+
     async Task HandleSubmit()
     {
-        
+        if (Id == null)
+        {
+            await VillainService.CreateVillain(villain);
+
+        }
+        else
+        {
+            await VillainService.UpdateVillain(villain);
+        }
+    }
+
+    async Task DeleteVillain()
+    {
+        await VillainService.DeleteVillain(villain.Id);
     }
 }

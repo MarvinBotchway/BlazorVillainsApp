@@ -8,5 +8,9 @@
         Task GetComics();
         Task GetVillains();
         Task<VillainModel> GetSingleVillain(int? id);
+
+        Task CreateVillain(VillainModel villain);
+        Task UpdateVillain(VillainModel villain);
+        Task DeleteVillain(int id);
     }
 }
