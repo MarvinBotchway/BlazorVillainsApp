@@ -17,7 +17,9 @@ namespace BlazorVillainsApp.Server.Controllers
         [HttpGet]
         public async Task<ActionResult<List<VillainModel>>> GetVillains()
         {
-            var villains = await _context.Villains.Include(v => v.Comic).ToListAsync();
+            var villains = await _context.Villains
+                .Include(v => v.Comic)
+                .ToListAsync();
             return Ok(villains);
         }
 
@@ -42,7 +44,9 @@ namespace BlazorVillainsApp.Server.Controllers
         [Route("comics")]
         public async Task<ActionResult<List<ComicModel>>> GetComics()
         {
-            var comics = await _context.Comics.ToListAsync();
+            var comics = await _context.Comics
+                .ToListAsync();
+
             return Ok(comics);
         }
 
