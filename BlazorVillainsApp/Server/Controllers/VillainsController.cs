@@ -51,8 +51,66 @@ namespace BlazorVillainsApp.Server.Controllers
         }
 
 
+        [HttpPost]
+        
+        public async Task<ActionResult<List<VillainModel>>> CreateVillain(VillainModel villain)
+        {
+            villain.Comic = null;
+            _context.Villains.Add(villain);
+            await _context.SaveChangesAsync();
+
+            return Ok(await GetDbVillains());
+        }
+
+       
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult<List<VillainModel>>> UpdateVillain(VillainModel villain, int id)
+        {
+            var dbVillain = await _context.Villains
+                .Include(v => v.Comic)
+                .FirstOrDefaultAsync(v => v.Id == id);
+
+            if (dbVillain == null)
+            {
+                return NotFound("Sorry Villain Not FOund");
+            }
+
+            dbVillain.FirstName = villain.FirstName;
+            dbVillain.LastName = villain.LastName;
+            dbVillain.VillainName = villain.VillainName;
+            dbVillain.ComicId = villain.ComicId;
+
+            await _context.SaveChangesAsync();
+
+            return Ok(await GetDbVillains());
+        }
 
 
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<List<VillainModel>>> DeleteVillain(int id)
+        {
+            var dbVillain = await _context.Villains
+                .Include(v => v.Comic)
+                .FirstOrDefaultAsync(v => v.Id == id);
+            if(dbVillain == null)
+            {
+                return NotFound("Sorry Villain Not Found");
+
+            }
+
+            _context.Villains.Remove(dbVillain);
+            await _context.SaveChangesAsync();
+
+            return Ok(await GetDbVillains());
+        }
+
+
+        private async Task<List<VillainModel>> GetDbVillains()
+        {
+            return await _context.Villains.Include(v => v.Comic).ToListAsync();
+
+        }
 
     }
 }
