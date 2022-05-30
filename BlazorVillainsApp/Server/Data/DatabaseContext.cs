@@ -43,7 +43,8 @@ namespace BlazorVillainsApp.Server.Data
 
         }
 
-
+        public DbSet<ComicModel> Comics { get; set; }
+        public DbSet<VillainModel> Villains { get; set; }
 
     }
 }
